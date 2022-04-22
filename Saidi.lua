@@ -13618,7 +13618,7 @@ if photo.total_count > 0 then
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥𝗦 🧑‍💻', callback_data = msg.sender.user_id..'/mydev'}, {text = '𝗖𝗛𝗔𝗡𝗡𝗘𝗟𝗦 🌐', callback_data = msg.sender.user_id..'/chSource'},
+{text = '𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥𝗦 🧑‍💻', callback_data = msg.sender.user_id..'/story'}, {text = '𝗖𝗛𝗔𝗡𝗡𝗘𝗟𝗦 🌐', callback_data = msg.sender.user_id..'/chSource'},
 },
 {
 {text = '𝗕𝗢𝗧 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚', callback_data = msg.sender.user_id..'/help1'}, {text = '𝗦𝗢𝗨𝗥𝗖𝗘 𝗕𝗢𝗧 ✅', callback_data = msg.sender.user_id..'/mysourcebot'},
@@ -14870,16 +14870,7 @@ Redis:set(Saidi.."Saidi:Set:Rd"..IdUser..":"..ChatId,true)
 LuaTele.editMessageText(ChatId,Msg_id,"•  ارسل لي الرد الان", 'md', true)
 end
 end
-if Text and Text:match('(%d+)/mydev') then
-local UserId = Text:match('(%d+)/mydev')
-if tonumber(IdUser) == tonumber(UserId) then
-au ={type = "photo",media = "https://t.me/V_I_K_I_N_G_2/142,caption = '*مرحبا*\n',parse_mode = "Markdown"}    
-keyboard = {} 
-keyboard.inline_keyboard = {{{text = '• استوري أخري •', callback_data=IdUser.."/story"},},}
-local mm = Msg_id/2097152/0.5
-https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..mm.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
-end 
-end
+
 if Text and Text:match('(%d+)/story') then
 local UserId = Text:match('(%d+)/story')
 if tonumber(IdUser) == tonumber(UserId) then
