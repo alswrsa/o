@@ -14873,7 +14873,7 @@ end
 if Text and Text:match('(%d+)/mydev') then
 local UserId = Text:match('(%d+)/mydev')
 if tonumber(IdUser) == tonumber(UserId) then
-au ={type = "photo",media = "https://t.me/V_I_K_I_N_G_2/142 = '*مرحبا*\n',parse_mode = "Markdown"}     
+au ={type = "photo",media = "https://t.me/V_I_K_I_N_G_2/142 = '*مرحبا*\n',parse_mode = "Markdown"},    
 keyboard = {} 
 keyboard.inline_keyboard = {{{text = '• استوري أخري •', callback_data=IdUser.."/story"},},}
 local mm = Msg_id/2097152/0.5
