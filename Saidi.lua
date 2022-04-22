@@ -2815,6 +2815,61 @@ end
 if text == 'ايديي' then
 return LuaTele.sendText(msg_chat_id,msg_id,'\nايديك -› '..msg.sender.user_id,"md",true)  
 end
+if text and text:match('^تحكم @(%S+)$') then
+local UserName = text:match('^تحكم @(%S+)$') 
+if not msg.Addictive then
+return LuaTele.sendText(msg_chat_id,msg_id,'\n* ✵ هاذا الامر يخص• '..Controller_Num(7)..' •* ',"md",true)  
+end
+if ChannelJoin(msg) == false then
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = '• اضغط للاشتراك •', url = 't.me/'..Redis:get(Saidi..'Channel:Join')}, },}}
+return LuaTele.sendText(msg.chat_id,msg.id,'*\n✵ عليك الاشتراك في قناة البوت لاستخذام الاوامر*',"md",false, false, false, false, reply_markup)
+end
+local UserId_Info = LuaTele.searchPublicChat(UserName)
+if not UserId_Info.id then
+return LuaTele.sendText(msg_chat_id,msg_id,"\n ✵ عذرأ لا يوجد حساب بهذا المعرف ","md",true)  
+end
+if UserId_Info.type.is_channel == true then
+return LuaTele.sendText(msg_chat_id,msg_id,"\n ✵ عذرأ لا تستطيع استخدام معرف قناة او قروب ","md",true)  
+end
+if UserName and UserName:match('(%S+)[Bb][Oo][Tt]') then
+return LuaTele.sendText(msg_chat_id,msg_id,"\n ✵ عذرأ لا تستطيع استخدام معرف البوت ","md",true)  
+end
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
+{
+{text = '• تحكم الاشرف • ', data = msg.sender.user_id..'/groupNumseteng//'..UserId_Info.id},
+},
+{
+{text = '• تحكم الرتبه • ', data = msg.sender.user_id..'/rankup//'..UserId_Info.id},
+},
+{
+{text = '• تحكم الاذعاج • ', data = msg.sender.user_id..'/sting//'..UserId_Info.id},
+},
+}
+}
+return LuaTele.sendText(msg.chat_id,msg.id,'*\n✵ الـيـك قـائـمـة الـتـحـكم عـلـي الـعـضـو*',"md",false, false, false, false, reply_markup)
+end
+if text == 'تحكم' then
+if not msg.Addictive then
+return LuaTele.sendText(msg_chat_id,msg_id,'\n* ✵ هاذا الامر يخص• '..Controller_Num(7)..' •* ',"md",true)  
+end
+local Message_Reply = LuaTele.getMessage(msg.chat_id, msg.reply_to_message_id)
+if UserInfo and UserInfo.type and UserInfo.type.luatele == "userTypeBot" then
+return LuaTele.sendText(msg_chat_id,msg_id,"\n✵ عذرأ لا تستطيع استخدام الامر على البوت ","md",true)  
+end
+local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {
+{
+{text = '• تحكم الاشرف • ', data = msg.sender.user_id..'/groupNumseteng//'..Message_Reply.sender.user_id}, 
+},
+{
+{text = '• تحكم الرتبه • ', data = msg.sender.user_id..'/rankup//'..Message_Reply.sender.user_id}, 
+},
+{
+{text = '• تحكم الاذعاج • ', data = msg.sender.user_id..'/sting//'..Message_Reply.sender.user_id}, 
+},
+}
+}
+return LuaTele.sendText(msg.chat_id,msg.id,'*\n✵ الـيـك قـائـمـة الـتـحـكم عـلـي الـعـضـو*',"md",false, false, false, false, reply_markup)
+end
 if text == 'صلاحياتي' then
 if msg.can_be_deleted_for_all_users == false then
 return LuaTele.sendText(msg_chat_id,msg_id,"\n*◉ عذرآ البوت ليس ادمن في الجروب يرجى ترقيته وتفعيل الصلاحيات له *","md",true)  
@@ -9880,12 +9935,37 @@ keyboard.inline_keyboard = {
 local msg_id = msg.id/2097152/0.5
 https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/TEAMSUL/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
 end
-if text == "استوري" or text == 'فيديوهات' then
-local t = "مرحبا اليك استوري عشوائي 🌝💜"
+if text == "استوري" then
+local t = "*اضغط علي الزر لاختيار استوري أخر 🌝🖤*"
 Rrr = math.random(4,50)
 local m = "https://t.me/Qapplu/"..Rrr..""
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '• استوري •', callback_data=msg.sender.user_id.."/story"},{text = '• استوري حب •', callback_data=msg.sender.user_id.."/story2"},
+},
+{
+{text = '• استوري مضحك •', callback_data=msg.sender.user_id.."/story4"},{text = '• استوري قران •', callback_data=msg.sender.user_id.."/story3"},
+},
+{
+{text = '•sَoٰuِِ𝖱ٰcٌe  ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 •', url = "http://t.me/RBBOU"}
+},
+}
 local rep = msg.id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token.."/sendaudio?chat_id="..msg_chat_id.."&caption="..URL.escape(t).."&audio="..m.."&reply_to_message_id="..rep.."&parse_mode=Markdown")
+https.request("https://api.telegram.org/bot"..Token.."/sendaudio?chat_id="..msg_chat_id.."&caption="..URL.escape(t).."&audio="..m.."&reply_to_message_id="..rep.."&parse_mode=Markdown&reply_markup="..JSON.encode(keyboard))
+end
+if text == "ثيم" or text == "ثيمات" then
+local t = "*اضغط علي الزر لاختيار ثيم أخر 🌝🖤*"
+Rrr = math.random(1,57)
+local m = "https://t.me/agklpoj/"..Rrr..""
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '• ثيم أخري •', callback_data=msg.sender.user_id.."/theme"},
+},
+}
+local rep = msg.id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendaudio?chat_id="..msg_chat_id.."&caption="..URL.escape(t).."&audio="..m.."&reply_to_message_id="..rep.."&parse_mode=Markdown&reply_markup="..JSON.encode(keyboard))
 end
 if text == "فيديوهات رومانسيه" or text == 'رومانسي' then
 local t = "مرحبا اليك فيديوهات رومانسيه 🌝💜"
@@ -14789,6 +14869,62 @@ Redis:set(Saidi.."Saidi:Set:Rd"..IdUser..":"..ChatId,true)
 LuaTele.editMessageText(ChatId,Msg_id,"•  ارسل لي الرد الان", 'md', true)
 end
 end
+if Text and Text:match('(%d+)/story') then
+local UserId = Text:match('(%d+)/story')
+if tonumber(IdUser) == tonumber(UserId) then
+Rrr = math.random(2,22)
+au ={type = "audio",media = "https://t.me/JABWA8/"..Rrr.."",caption = '*مرحبا اليك استوري 🌝🖤*\n',parse_mode = "Markdown"}     
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = '• استوري أخري •', callback_data=IdUser.."/story"},},}
+local mm = Msg_id/2097152/0.5
+https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..mm.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
+end 
+end
+if Text and Text:match('(%d+)/story2') then
+local UserId = Text:match('(%d+)/story2')
+if tonumber(IdUser) == tonumber(UserId) then
+Rrr = math.random(4,74)
+au ={type = "audio",media = "https://t.me/JABWA7/"..Rrr.."",caption = '*مرحبا اليك استوري حب 🌝🖤*\n',parse_mode = "Markdown"}     
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = '• استوري أخري •', callback_data=IdUser.."/story2"},},}
+local mm = Msg_id/2097152/0.5
+https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..mm.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
+end 
+end
+if Text and Text:match('(%d+)/story3') then
+local UserId = Text:match('(%d+)/story3')
+if tonumber(IdUser) == tonumber(UserId) then
+Rrr = math.random(4,74)
+au ={type = "audio",media = "https://t.me/JABWA7/"..Rrr.."",caption = '*مرحبا اليك استوري قرأن 🌝🖤*\n',parse_mode = "Markdown"}     
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = '• استوري أخري •', callback_data=IdUser.."/story3"},},}
+local mm = Msg_id/2097152/0.5
+https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..mm.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
+end 
+end
+if Text and Text:match('(%d+)/story4') then
+local UserId = Text:match('(%d+)/story4')
+if tonumber(IdUser) == tonumber(UserId) then
+Rrr = math.random(4,74)
+au ={type = "audio",media = "https://t.me/JABWA6/"..Rrr.."",caption = '*مرحبا اليك استوري مضحك 🌝🖤*\n',parse_mode = "Markdown"}     
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = '• استوري أخري •', callback_data=IdUser.."/story4"},},}
+local mm = Msg_id/2097152/0.5
+https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..mm.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
+end 
+end
+if Text and Text:match('(%d+)/theme') then
+local UserId = Text:match('(%d+)/theme')
+if tonumber(IdUser) == tonumber(UserId) then
+Rrr = math.random(1,57)
+au ={type = "audio",media = "https://t.me/agklpoj/"..Rrr.."",caption = '*مرحبا اليك ثيم 🌝🖤*\n',parse_mode = "Markdown"}     
+keyboard = {} 
+keyboard.inline_keyboard = {{{text = '• ثيم أخري •', callback_data=IdUser.."/theme"},},}
+local mm = Msg_id/2097152/0.5
+https.request("http://api.telegram.org/bot"..Token.."/editmessagemedia?chat_id="..ChatId.."&message_id="..mm.."&media="..JSON.encode(au).."&reply_markup="..JSON.encode(keyboard))
+end 
+end
+
 if Text and Text:match('(%d+)/ban0') then
 local UserId = Text:match('(%d+)/ban0')
 if tonumber(IdUser) == tonumber(UserId) then
