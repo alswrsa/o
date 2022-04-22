@@ -15783,8 +15783,8 @@ local TextHelp = [[*
 *]]
 LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
-elseif Text and Text:match('(%d+)/degm') then
-local UserId = Text:match('(%d+)/degm')
+elseif Text and Text:match('(%d+)/mydev') then
+local UserId = Text:match('(%d+)/mydev')
 if tonumber(IdUser) == tonumber(UserId) then
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
@@ -15830,7 +15830,7 @@ if tonumber(IdUser) == tonumber(UserId) then
 local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
-{{text = 'المطور سيزر', url= 't.me/RBBOU'},{text = 'بوت تواصل سيزر',url= 't.me/RBBOU'}}},   
+{{text = 'المطور سيزر', url= 't.me/RBBOU'},{text = 'بوت تواصل سيزر',url="https://t.me/ttccss"}},   
 {{text = 'المطور عسلية', url="https://t.me/gamee?game=MotoFX"},{text = 'بوت تواصل عسليه', url="https://t.me/gamee?game=F1Racer"}}, 
 {{text = '•• 𝙍𝙀𝘽𝙊𝙍𝙏𝙀𝙍 ••', url = 't.me/RBBOU'}},
 {{text = 'القائمه الرئيسيه', data = IdUser..'/help6'}},
