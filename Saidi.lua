@@ -9920,21 +9920,6 @@ if Redis:get(Saidi.."Status:kool"..msg.chat_id) then
 return LuaTele.sendText(msg_chat_id,msg_id,m,"md",true) 
 end
 end
-if text == "غنيلي" then
-Abs = math.random(2,140); 
-local Text ='*▹￤تم اختيار الاغنيه لك*'
-keyboard = {} 
-keyboard.inline_keyboard = {
-{
-{text = ': مره اخرى 🔃.', callback_data = IdUser..'/Re@'},
-},
-{
-{text = '❲ 𝗦𝙾𝚄𝚁𝙲𝙴 𝗗𝚁𝙰𝙲𝙾𝙽 ❳',url="t.me/e1o_2"}
-},
-}
-local msg_id = msg.id/2097152/0.5
-https.request("https://api.telegram.org/bot"..Token..'/sendVoice?chat_id=' .. msg.chat_id .. '&voice=https://t.me/TEAMSUL/'..Abs..'&caption=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard)) 
-end
 if text == "استوري" then
 local t = "*اضغط علي الزر لاختيار استوري أخر 🌝🖤*"
 Rrr = math.random(4,50)
@@ -14842,6 +14827,34 @@ LuaTele.editMessageText(ChatId,Msg_id,"•  ارسل لي الرد الان", 'm
 end
 end
 
+if Text and Text:match('(%d+)/mydev') then
+local UserId = Text:match('(%d+)/mydev')
+if tonumber(IdUser) == tonumber(UserId) then
+video = "http://t.me/t_imoo/4"
+local T =[[
+• 𝙬𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝙨𝙤𝙪𝙧𝙘𝙚 𝙧𝙚𝙗𝙤𝙧𝙩𝙚𝙧
+ـــــــــــــــــــــــ
+• 𝙩𝙝𝙚 𝙗𝙚𝙨𝙩 𝙨𝙤𝙪𝙧𝙘𝙚 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢
+ـــــــــــــــــــــــ
+• 𝙬𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝙨𝙤𝙪𝙧𝙘𝙚 𝙧𝙚𝙗𝙤𝙧𝙩𝙚𝙧
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text =first_name, url = "https://t.me/RBBOU"}
+},
+{
+{text = ' • 𝗔𝗕𝗗𝗢 𝗔𝗦𝗜𝗟 - ســـــــــيزر •', url = "https://t.me/ttccss"}
+},
+{
+{text = '•• 𝙍𝙀𝘽𝙊𝙍𝙏𝙀𝙍 ••', url = "https://t.me/RBBOU"}
+},
+{
+{text = '•اضف البوت لمجموعتك•', url = 't.me/'..UserBot..'?startgroup=new'},
+},
+}
+local msgg = msg_id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendvideo?chat_id=" .. msg_chat_id .. "&video="..video.."&caption=".. URL.escape(T).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 if Text and Text:match('(%d+)/story') then
 local UserId = Text:match('(%d+)/story')
 if tonumber(IdUser) == tonumber(UserId) then
@@ -15824,24 +15837,6 @@ local TextHelp = [[*
 *]]
 LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
-elseif Text and Text:match('(%d+)/mydev') then
-local UserId = Text:match('(%d+)/mydev')
-if tonumber(IdUser) == tonumber(UserId) then
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{{text = 'المطور سيزر', url= 't.me/RBBOU'},{text = 'بوت تواصل سيزر',url="https://t.me/ttccss"}},   
-{{text = 'المطور عسلية', url="https://t.me/gamee?game=MotoFX"},{text = 'بوت تواصل عسليه', url="https://t.me/gamee?game=F1Racer"}}, 
-{{text = '•• 𝙍𝙀𝘽𝙊𝙍𝙏𝙀𝙍 ••', url = 't.me/RBBOU'}},
-{{text = 'القائمه الرئيسيه', data = IdUser..'/help6'}},
-}
-}
-local TextHelp = [[*
-• مرحبا بك في الالعاب المتطورة الخاص بسورس ريبورتر 
-• اختر اللعبه ثم اختار المحادثة التي تريد اللعب بها
-*]]
-LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
-end
 elseif Text and Text:match('(%d+)/help2') then
 local UserId = Text:match('(%d+)/help2')
 if tonumber(IdUser) == tonumber(UserId) then
@@ -16043,37 +16038,6 @@ local TextHelp = [[*
 LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
 end
 end
-elseif Text and Text:match('(%d+)/abdo3') then
-local UserId = Text:match('(%d+)/abdo3')
-if tonumber(IdUser) == tonumber(UserId) then
-local reply_markup = LuaTele.replyMarkup{
-type = 'inline',
-data = {
-{
-{text = '•❶•', data = IdUser..'/help1'}, {text = '•❷•', data = IdUser..'/help2'}, 
-},
-{
-{text = '•❸•', data = IdUser..'/help3'}, {text = '•❹•', data = IdUser..'/help4'}, 
-},
-{
-{text = '•❺•', data = IdUser..'/listallAddorrem'}, {text = '•❻•', data = IdUser..'/NoNextSeting'}, 
-},
-{
-{text = '• 𝙍𝙀𝘽𝙊𝙍𝙏𝙀𝙍 •', url = 'https://t.me/RBBOU'}, 
-},
-}
-}
-local TextHelp = [[*
-• 𝙬𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝙨𝙤𝙪𝙧𝙘𝙚 𝙧𝙚𝙗𝙤𝙧𝙩𝙚𝙧
-ــــــــــــــــــــــــــــــــــــــــــــــ
-• 𝙩𝙝𝙚 𝙗𝙚𝙨𝙩 𝙨𝙤𝙪𝙧𝙘𝙚 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢
-ــــــــــــــــــــــــــــــــــــــــــــــ
-• 𝙬𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝙨𝙤𝙪𝙧𝙘𝙚 𝙧𝙚𝙗𝙤𝙧𝙩𝙚𝙧
-*]]
-LuaTele.editMessageText(ChatId,Msg_id,TextHelp, 'md', true, false, reply_markup)
-end
-
-
 if Text and Text:match('(%d+)/zog1') then
 local UserId = Text:match('(%d+)/zog1')
 if tonumber(IdUser) == tonumber(UserId) then
