@@ -13549,7 +13549,7 @@ keyboard.inline_keyboard = {
 {text = 'تـغــير الــلــغـة ♻️', callback_data = msg.sender.user_id..'/myluangug'}
 },
 {
-{text = ' ⚙️ اضف بوت '..Mostafa..' لمجموعتك  ⚙️ ', url = 't.me/'..UserBot..'?startgroup=new'},
+{text = ' ⚙️ اضف البوت لمجموعتك ⚙️ ', url = 't.me/'..UserBot..'?startgroup=new'},
 },
 }
 local msgg = msg_id/2097152/0.5
