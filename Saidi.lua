@@ -13508,9 +13508,22 @@ LuaTele.sendText(msg_chat_id,msg_id, "* ◉ تم تحديث الملفات *","m
 dofile('Saidi.lua')  
 end
 if text == '/start' then
+local photo = LuaTele.getUserProfilePhotos(Saidi)
+local ban = LuaTele.getUser(Saidi)
+local bain = LuaTele.getUser(msg.sender.user_id)
 Redis:sadd(Saidi..'Num:User:Pv',msg.sender.user_id)  
-if not msg.DevelopersQ then
+if not msg.ControllerBot then
 if not Redis:get(Saidi.."Start:Bot") then
+if bain.username then
+banusername = '[@'..bain.username..']'
+else
+banusername = 'لا يوجد'
+end
+if bain.first_name then
+baniusername = '*['..bain.first_name..'](tg://user?id='..bain.id..')*'
+else
+baniusername = 'لا يوجد'
+end
 local CmdStart = '*ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ\n🎤╖ أهلآ بك عزيزي أنا بوت '..(Redis:get(Saidi.."Name:Bot") or "ريبورتر")..
 '\n ⚙️╢ وظيفتي حماية المجموعات'..
 '\n ✅╢ لتفعيل البوت عليك اتباع مايلي '..
@@ -13520,77 +13533,39 @@ local CmdStart = '*ــــــــــــــــــــــــــــــ�
 '\n 🎌╜ ارسل كلمة تفعيل ليتم تفعيل المجموعه'..
 '\n ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ'..
 '\n ✵ مطور البوت -›〘 @'..UserSudo..' 〙*'
-local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
-data = {
+if photo.total_count > 0 then
+keyboard = {} 
+keyboard.inline_keyboard = {
 {
-{text = 'المطور سيزر',type = 'text'},{text = 'المطور عسليه', type = 'text'},
+{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
 },
 {
-{text = 'قناة السورس',type = 'text'},{text = 'جروب الدعم', type = 'text'},
+{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
 },
 {
-{text = 'سورس',type = 'text'},{text = 'المطور', type = 'text'},
-},
-{
-{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
-},
-{
-{text = 'غنيلي',type = 'text'},{text = 'استوري', type = 'text'},
-},
-{
-{text = 'رتبتي',type = 'text'},{text = 'ايدي', type = 'text'},
-},
-{
-{text = 'لو خيروك',type = 'text'},{text = 'حروف', type = 'text'},
-},
-{
-{text = 'نكته',type = 'text'},{text = 'اذكار', type = 'text'},
-},
-{
-{text = 'تويت',type = 'text'},{text = 'كتبات', type = 'text'},
-},
-{
-{text = 'أضغط لاضافه ألبوت لمجموعتك 𖠪', url = 't.me/'..UserBot..'?startgroup=new'}, 
+{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
 },
 }
-}
-return LuaTele.sendText(msg_chat_id,msg_id,CmdStart,"md",false, false, false, false, reply_markup)
+local msgg = msg_id/2097152/0.5
+https.request("https://api.telegram.org/bot"..Token.."/sendphoto?chat_id=" .. msg_chat_id .. "&photo="..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id.."&caption=".. URL.escape(CmdStart).."&reply_to_message_id="..msgg.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+LuaTele.sendText(Sudo_Id,0,'*\n دخل شخص إلى البوت \n𖣘┉┉┉⊶𓄼•𝐒𝐄𝐋𝐕𝐀•𓄹⊷┉┉┉𖣘\n اسمه :- '..baniusername..' \n ايديه :-  : '..msg.sender.user_id..'\n - معرفة '..banusername..' \n*',"md")
 else
-local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
+local reply_markup = LuaTele.replyMarkup{
+type = 'inline',
 data = {
 {
-{text = 'المطور سيزر',type = 'text'},{text = 'المطور عسليه', type = 'text'},
+{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
 },
 {
-{text = 'قناة السورس',type = 'text'},{text = 'جروب الدعم', type = 'text'},
+{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
 },
 {
-{text = 'سورس',type = 'text'},{text = 'المطور', type = 'text'},
-},
-{
-{text = '𖤍•──∴ ِ𝖱ٌeٓٓBoِٰ𝖱tٌِeِ𝖱 ∴──•𖤍',type = 'text'},
-},
-{
-{text = 'غنيلي',type = 'text'},{text = 'استوري', type = 'text'},
-},
-{
-{text = 'رتبتي',type = 'text'},{text = 'ايدي', type = 'text'},
-},
-{
-{text = 'لو خيروك',type = 'text'},{text = 'حروف', type = 'text'},
-},
-{
-{text = 'نكته',type = 'text'},{text = 'اذكار', type = 'text'},
-},
-{
-{text = 'تويت',type = 'text'},{text = 'كتبات', type = 'text'},
-},
-{
-{text = 'أضغط لاضافه ألبوت لمجموعتك 𖠪', url = 't.me/'..UserBot..'?startgroup=new'}, 
+{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
 },
 }
 }
 return LuaTele.sendText(msg_chat_id,msg_id,Redis:get(Saidi.."Start:Bot"),"md",false, false, false, false, reply_markup)
+end
 end
 else
 local reply_markup = LuaTele.replyMarkup{type = 'keyboard',resize = true,is_personal = true,
