@@ -13524,7 +13524,7 @@ baniusername = '*['..bain.first_name..'](tg://user?id='..bain.id..')*'
 else
 baniusername = 'لا يوجد'
 end
-local CmdStart = '*ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ\n🎤╖ أهلآ بك عزيزي أنا بوت '..(Redis:get(Saidi.."Name:Bot") or "ريبورتر")..
+local CmdStart = '*ـــــــــــــــــــــــــــــــــــــــــــــــــــــــــ\n 🎤╖ أهلآ بك عزيزي أنا بوت '..(Redis:get(Saidi.."Name:Bot") or "ريبورتر")..
 '\n ⚙️╢ وظيفتي حماية المجموعات'..
 '\n ✅╢ لتفعيل البوت عليك اتباع مايلي '..
 '\n 🔘╢ أضِف البوت إلى مجموعتك'..
@@ -13537,13 +13537,19 @@ if photo.total_count > 0 then
 keyboard = {} 
 keyboard.inline_keyboard = {
 {
-{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
+{text = '𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥𝗦 🧑‍💻', callback_data = msg.sender.user_id..'/mydev'}, {text = '𝗖𝗛𝗔𝗡𝗡𝗘𝗟𝗦 🌐', callback_data = msg.sender.user_id..'/chSource'},
 },
 {
-{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
+{text = '𝗕𝗢𝗧 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚', callback_data = msg.sender.user_id..'/help1'}, {text = '𝗦𝗢𝗨𝗥𝗖𝗘 𝗕𝗢𝗧 ✅', callback_data = msg.sender.user_id..'/mysourcebot'},
 },
 {
-{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
+{text = '𝗚𝗔𝗠𝗘𝗦 🎮', callback_data = msg.sender.user_id..'/mygeams'}
+},
+{
+{text = 'تـغــير الــلــغـة ♻️', callback_data = msg.sender.user_id..'/myluangug'}
+},
+{
+{text = ' ⚙️ اضف بوت '..Mostafa..' لمجموعتك  ⚙️ ', url = 't.me/'..UserBot..'?startgroup=new'},
 },
 }
 local msgg = msg_id/2097152/0.5
@@ -13554,13 +13560,19 @@ local reply_markup = LuaTele.replyMarkup{
 type = 'inline',
 data = {
 {
-{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
+{text = '𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥𝗦 🧑‍💻', callback_data = msg.sender.user_id..'/mydev'}, {text = '𝗖𝗛𝗔𝗡𝗡𝗘𝗟𝗦 🌐', callback_data = msg.sender.user_id..'/chSource'},
 },
 {
-{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
+{text = '𝗕𝗢𝗧 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 📚', callback_data = msg.sender.user_id..'/mycommands'}, {text = '𝗦𝗢𝗨𝗥𝗖𝗘 𝗕𝗢𝗧 ✅', callback_data = msg.sender.user_id..'/mysourcebot'},
 },
 {
-{text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/mydev'}, {text = '𓄼• ᴍʏ ᴅᴇᴠ •𓄹', callback_data = msg.sender.user_id..'/chSource'},
+{text = '𝗚𝗔𝗠𝗘𝗦 🎮', callback_data = msg.sender.user_id..'/mygeams'}
+},
+{
+{text = 'تـغــير الــلــغـة ♻️', callback_data = msg.sender.user_id..'/myluangug'}
+},
+{
+{text = ' ⚙️ اضف بوت '..Mostafa..' لمجموعتك  ⚙️ ', url = 't.me/'..UserBot..'?startgroup=new'},
 },
 }
 }
